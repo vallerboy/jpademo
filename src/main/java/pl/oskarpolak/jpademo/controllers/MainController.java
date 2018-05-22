@@ -22,6 +22,7 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("barcodeForm", new BarcodeForm());
+        model.addAttribute("allBarcodes", barcodeRepository.findAll());
         return "addBarcode";
     }
 
@@ -29,7 +30,7 @@ public class MainController {
     @ResponseBody
     public String index(@ModelAttribute BarcodeForm barcodeForm){
         BarcodeEntity barcodeEntity = new BarcodeEntity(barcodeForm);
-        
+
 
         barcodeRepository.save(barcodeEntity);
         return "Dodano do bazy";

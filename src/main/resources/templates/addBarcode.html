@@ -13,6 +13,16 @@
             Waga: <input type="number" max="200" th:field="*{weight}"> <br/>
             <input type="submit" value="Wyślij"/>
         </form>
+
+
+        <br/><br/>
+
+        <div th:each="item : ${allBarcodes}">
+            <h1 th:text="${item.getProductName()}"></h1> <small th:text="${item.getProductCompany()}"></small>
+                <br/>
+            Kod kreskowy: <span th:text="${item.getBarcode()}"></span> <small th:text="'Waga: ' + ${item.getWeight()}"></small>
+            <hr/>
+        </div>
     </div>
 </body>
 </html>
