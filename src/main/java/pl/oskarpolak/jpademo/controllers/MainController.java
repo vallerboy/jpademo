@@ -28,11 +28,8 @@ public class MainController {
     @PostMapping("/")
     @ResponseBody
     public String index(@ModelAttribute BarcodeForm barcodeForm){
-        BarcodeEntity barcodeEntity = new BarcodeEntity();
-        barcodeEntity.setWeight(barcodeForm.getWeight());
-        barcodeEntity.setBarcode(barcodeForm.getBarcode());
-        barcodeEntity.setProductName(barcodeForm.getProductName());
-        barcodeEntity.setProductCompany(barcodeForm.getCompanyName());
+        BarcodeEntity barcodeEntity = new BarcodeEntity(barcodeForm);
+        
 
         barcodeRepository.save(barcodeEntity);
         return "Dodano do bazy";

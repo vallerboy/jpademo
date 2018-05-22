@@ -1,6 +1,7 @@
 package pl.oskarpolak.jpademo.models;
 
 import org.hibernate.validator.constraints.br.CPF;
+import pl.oskarpolak.jpademo.models.forms.BarcodeForm;
 
 import javax.persistence.*;
 
@@ -16,6 +17,15 @@ public class BarcodeEntity {
     private String productCompany;
     private String barcode;
     private int weight;
+
+    public BarcodeEntity() { }
+
+    public BarcodeEntity(BarcodeForm barcodeForm){
+        setWeight(barcodeForm.getWeight());
+        setBarcode(barcodeForm.getBarcode());
+        setProductName(barcodeForm.getProductName());
+        setProductCompany(barcodeForm.getCompanyName());
+    }
 
     public int getId() {
         return id;
