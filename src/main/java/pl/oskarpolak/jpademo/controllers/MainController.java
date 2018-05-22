@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.oskarpolak.jpademo.models.BarcodeEntity;
 import pl.oskarpolak.jpademo.models.forms.BarcodeForm;
@@ -18,10 +20,23 @@ public class MainController {
     BarcodeRepository barcodeRepository; // = new BarcodeRepostitory();
 
     @GetMapping("/")
-    @ResponseBody
     public String index(Model model) {
         model.addAttribute("barcodeForm", new BarcodeForm());
         return "addBarcode";
     }
+
+    @PostMapping("/")
+    @ResponseBody
+    public String index(@ModelAttribute BarcodeForm barcodeForm){
+        BarcodeEntity barcodeEntity = new BarcodeEntity();
+        barcodeEntity.setWeight(barcodeForm.getWeight());
+        barcodeEntity.setBarcode(barcodeForm.getBarcode());
+        barcodeEntity.setProductName(barcodeForm.getProductName());
+        barcodeEntity.setProductCompany(barcodeForm.getCompanyName());
+
+        barcodeRepository.save(barcodeEntity);
+        return "Dodano do bazy";
+    }
+
 
 }
