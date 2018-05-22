@@ -17,12 +17,36 @@
 
         <br/><br/>
 
-        <div th:each="item : ${allBarcodes}">
-            <h1 th:text="${item.getProductName()}"></h1> <small th:text="${item.getProductCompany()}"></small>
-                <br/>
-            Kod kreskowy: <span th:text="${item.getBarcode()}"></span> <small th:text="'Waga: ' + ${item.getWeight()}"></small>
-            <hr/>
-        </div>
+        <!--<div th:each="item : ${allBarcodes}">-->
+            <!--<h1 th:text="${item.getProductName()}"></h1> <small th:text="${item.getProductCompany()}"></small>-->
+                <!--<br/>-->
+            <!--Kod kreskowy: <span th:text="${item.getBarcode()}"></span> <small th:text="'Waga: ' + ${item.getWeight()}"></small>-->
+            <!--<hr/>-->
+        <!--</div>-->
+        <form action="/search" method="post">
+            <input type="text" th:name="search" placeholder="Czego szukasz?">
+            <input type="submit" value="Szukaj">
+        </form>
+
+        <br/>
+
+        <table align="center" border="1">
+            <tr>
+                <td> Nazwa firmy </td>
+                <td> Nazwa produktu </td>
+                <td> Kod kreskowy </td>
+                <td> Waga </td>
+            </tr>
+
+            <tr th:each="item : ${allBarcodes}">
+                <td th:text="${item.getProductCompany()}"></td>
+                <td th:text="${item.getProductName()}"></td>
+                <td th:text="${item.getBarcode()}"></td>
+                <td th:text="${item.getWeight()}"></td>
+            </tr>
+        </table>
     </div>
+
+
 </body>
 </html>
