@@ -51,6 +51,7 @@
                        th:href="${(basket.isIdOnList(item.getId()) ? '/remove/' : '/add/') + item.getId()}"></a></td>
             </tr>
         </table>
+        <button th:onclick="${'location.href=\\'' + basket.getBasketSize() + '\\''}">Hej</button>
     </div>
 
 
