@@ -21,7 +21,7 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("barcodeForm", new BarcodeForm());
-        //model.addAttribute("allBarcodes", barcodeRepository.findByBarcodeMatchesAndWeightIsGreaterThanEqual(".*(1|2).*", 10));
+        model.addAttribute("allBarcodes", barcodeRepository.findAll());
         return "addBarcode";
     }
 
