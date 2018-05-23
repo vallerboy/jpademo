@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import pl.oskarpolak.jpademo.models.forms.BarcodeForm;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "barcode")
@@ -65,5 +66,34 @@ public class BarcodeEntity {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BarcodeEntity that = (BarcodeEntity) o;
+        return id == that.id &&
+                weight == that.weight &&
+                Objects.equals(productName, that.productName) &&
+                Objects.equals(productCompany, that.productCompany) &&
+                Objects.equals(barcode, that.barcode);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, productName, productCompany, barcode, weight);
+    }
+
+    @Override
+    public String toString() {
+        return "BarcodeEntity{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productCompany='" + productCompany + '\'' +
+                ", barcode='" + barcode + '\'' +
+                ", weight=" + weight +
+                '}';
     }
 }

@@ -30,12 +30,16 @@
 
         <br/>
 
+        <a href="/basket" th:text="${'Twój koszyk ma: ' + basket.getBasketSize()}"></a>
+
+        <br/>
         <table align="center" border="1">
             <tr>
                 <td> Nazwa firmy </td>
                 <td> Nazwa produktu </td>
                 <td> Kod kreskowy </td>
                 <td> Waga </td>
+                <td> Koszyk </td>
             </tr>
 
             <tr th:each="item : ${allBarcodes}">
@@ -43,6 +47,8 @@
                 <td th:text="${item.getProductName()}"></td>
                 <td th:text="${item.getBarcode()}"></td>
                 <td th:text="${item.getWeight()}"></td>
+                <td><a th:text="${basket.isIdOnList(item.getId()) ? 'Usuń z koszyka' : 'Dodaj do koszyka'}"
+                       th:href="${(basket.isIdOnList(item.getId()) ? '/remove/' : '/add/') + item.getId()}"></a></td>
             </tr>
         </table>
     </div>
